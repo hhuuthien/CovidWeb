@@ -304,7 +304,6 @@ export default {
             parseJSON: true,
           });
 
-          //upload
           firebase
             .database()
             .ref("vaccine/province")

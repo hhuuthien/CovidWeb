@@ -326,20 +326,55 @@ const changeName = (arrayStart, arrayEnd) => {
 };
 
 const getMyTime = (slash) => {
-  let today = new Date(); //hôm nay
-  if (today.getHours() < 9) {
-    today.setDate(today.getDate() - 1); //hôm qua
+  let today = new Date();
+  if (today.getHours() < 11) {
+    today.setDate(today.getDate() - 1);
   }
   let todayString = today.getDate() + slash + (today.getMonth() + 1);
   return todayString;
 };
 
-const getMyTime2 = () => {
-  let today = new Date(); //hôm nay
-  if (today.getHours() < 9) {
-    today.setDate(today.getDate() - 1); //hôm qua
+const getAppTime = () => {
+  let today = new Date();
+  if (today.getHours() < 11) {
+    today.setDate(today.getDate() - 1);
   }
   return today;
+};
+
+const getTime_String = (slash) => {
+  let today = new Date();
+  if (today.getHours() < 11) {
+    today.setDate(today.getDate() - 1);
+  }
+  let todayString = today.getDate() + slash + (today.getMonth() + 1);
+  return todayString;
+};
+
+const getRealTime_String = (slash) => {
+  let today = new Date();
+  let todayString = today.getDate() + slash + (today.getMonth() + 1);
+  return todayString;
+};
+
+const getTime_Date = () => {
+  let today = new Date();
+  if (today.getHours() < 11) {
+    today.setDate(today.getDate() - 1);
+  }
+  return today;
+};
+
+const getConfig = () => {
+  return {
+    apiKey: "AIzaSyAdNpXA6W8PpSGKbsWXZB4t5gBTXKpeMho",
+    authDomain: "covid-inf.firebaseapp.com",
+    databaseURL: "https://covid-inf-default-rtdb.firebaseio.com",
+    projectId: "covid-inf",
+    storageBucket: "covid-inf.appspot.com",
+    messagingSenderId: "189610331880",
+    appId: "1:189610331880:web:e9eba067c39fc38ff6435d",
+  };
 };
 
 export {
@@ -357,5 +392,9 @@ export {
   object_To_Array_3,
   changeName,
   getMyTime,
-  getMyTime2,
+  getAppTime,
+  getConfig,
+  getTime_Date,
+  getTime_String,
+  getRealTime_String,
 };

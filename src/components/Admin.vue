@@ -23,7 +23,7 @@ import axios from "axios";
 import firebase from "firebase/app";
 import "firebase/database";
 import csv2json from "csvjson-csv2json";
-import { hashString, hash } from "../js/func.js";
+//import { hashString, hash } from "../js/func.js";
 
 export default {
   name: "Admin",
@@ -44,16 +44,17 @@ export default {
     }
 
     const confirm = () => {
-      let pw = prompt("Nhập mật khẩu:", "");
-      if (pw == null || pw == "") {
-        window.alert("Vui lòng nhập mật khẩu");
-      } else {
-        if (hash(pw) === hashString()) {
-          get();
-        } else {
-          window.alert("Sai mật khẩu");
-        }
-      }
+      // let pw = prompt("Nhập mật khẩu:", "");
+      // if (pw == null || pw == "") {
+      //   window.alert("Vui lòng nhập mật khẩu");
+      // } else {
+      //   if (hash(pw) === hashString()) {
+      //     get();
+      //   } else {
+      //     window.alert("Sai mật khẩu");
+      //   }
+      // }
+      get2();
     };
 
     const get1 = () => {
@@ -92,33 +93,48 @@ export default {
       axios
         .request(options)
         .then(function(res) {
-          //remove invalid letter
-          let valid = res.data
-            .toString()
-            .replaceAll("/", "in")
-            .replace(`total_cities",""`, `total_cities","BB"`)
-            .replace(`ECMO","","","",""`, `ECMO","Z","Z","Z","Z"`);
-
           //csv --> json
-          const myjson = csv2json(valid, {
+          const myjson = csv2json(res.data.toString(), {
             parseNumbers: true,
             parseJSON: true,
+          });
+
+          let array = new Array();
+          myjson.forEach((element) => {
+            let data = {
+              day: element["NGÀY"],
+              inCountry: element["CỘNG ĐỒNG"],
+              fund: element["QUỸ VACCINE (tỷ VNĐ)"],
+              blockade: element.blockade,
+              city: element.city_by_day,
+              community: element.community,
+              import: element.imported,
+              newCase: element.new_cases,
+              newActive: element.new_active,
+              newDeath: element.new_deaths,
+              newRecover: element.new_recovered,
+              totalActive: element.total_active,
+              totalCase: element.total_cases_2020,
+              totalDeath: element.total_deaths_2020,
+              totalRecover: element.total_recovered_2020,
+              icu: element.ICU,
+              ecmo: element.ECMO,
+            };
+            array.push(data);
           });
 
           //csv --> json (transpose)
-          const myjson2 = csv2json(valid, {
-            parseNumbers: true,
-            parseJSON: true,
-            transpose: true,
-          });
+          // const myjson2 = csv2json(valid, {
+          //   parseNumbers: true,
+          //   parseJSON: true,
+          //   transpose: true,
+          // });
 
-          //upload
           firebase
             .database()
-            .ref("vietnam/")
+            .ref("api/")
             .set({
-              json: myjson,
-              json2: myjson2,
+              vietnamSummary: array,
             })
             .then(function() {
               document.getElementById("status2").innerHTML = "Function 2 done";
@@ -321,13 +337,13 @@ export default {
     };
 
     const get = () => {
-      get1();
-      get2();
-      get3();
-      get4();
-      get5();
-      get6();
-      get7();
+      // get1();
+      // get2();
+      // get3();
+      // get4();
+      // get5();
+      // get6();
+      // get7();
     };
 
     return { get1, get2, get3, get4, get5, get6, get7, get, confirm };

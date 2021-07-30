@@ -12,4 +12,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@font-face {
+  font-family: GoogleSans-Black;
+  src: url(./fonts/GoogleSans-Black.ttf);
+}
+@font-face {
+  font-family: GoogleSans-Regular;
+  src: url(./fonts/GoogleSans-Regular.ttf);
+}
+@font-face {
+  font-family: GoogleSans-Medium;
+  src: url(./fonts/GoogleSans-Medium.ttf);
+}
+</style>

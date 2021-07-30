@@ -1,6 +1,6 @@
 <template>
   <vietnam-summary />
-  <vietnam-map-2 />
+  <!-- <vietnam-map-2 /> -->
   <div class="columns">
     <div class="column">
       <vietnam-detail v-on:loaded="loaded" />
@@ -18,12 +18,12 @@
 import VietnamSummary from "./VietnamSummary.vue";
 import VietnamDetail from "./VietnamDetail.vue";
 import VietnamMap from "./VietnamMap.vue";
-import VietnamMap2 from "./VietnamMap2.vue";
+// import VietnamMap2 from "./VietnamMap2.vue";
 import { ref } from "vue";
 
 export default {
   name: "Vietnam",
-  components: { VietnamSummary, VietnamDetail, VietnamMap, VietnamMap2 },
+  components: { VietnamSummary, VietnamDetail, VietnamMap },
   setup() {
     const showContent = ref(false);
 

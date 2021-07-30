@@ -35,9 +35,9 @@
         <img src="../assets/coronavirus.png" alt="Logo" />
         <p id="nflex-title">COVID-19</p>
       </div>
-      <label for="check"
-        ><i class="material-icons" style="cursor:pointer">menu</i></label
-      >
+      <label for="check" id="label-menu">
+        <i class="material-icons" id="menu-btn">menu</i>
+      </label>
     </div>
 
     <!-- check-->
@@ -49,7 +49,7 @@
     <!-- side bar-->
     <div id="sidebar">
       <label for="check">
-        <i id="close-btn" class="material-icons">close</i>
+        <i class="material-icons" id="close-btn">close</i>
       </label>
       <ul>
         <li v-on:click="myFunction">
@@ -87,18 +87,28 @@ export default {
 </script>
 
 <style scoped>
-#navbar-pc {
+#navbar-pc,
+#navbar-mb {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  /* style */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin: 0 0 15px 0;
+  margin: 8px;
+  border-radius: 10px;
   padding: 0 20px;
+  border-radius: 10px;
+  background: rgb(228, 228, 228);
+  background: linear-gradient(
+    90deg,
+    rgba(228, 228, 228, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  height: 70px;
 }
 
-#navbar-pc img {
+#navbar-pc img,
+#navbar-mb img {
   height: 70px;
   padding: 15px;
 }
@@ -106,49 +116,42 @@ export default {
 #navbar-pc ul {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
   list-style-type: none;
   text-decoration: none;
   height: 70px;
 }
 
 #navbar-pc ul li {
-  height: 70px;
-}
-
-#navbar-pc ul li a {
-  height: 70px;
+  border-radius: 10px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-decoration: none;
+  justify-content: center;
+  height: 50px;
+}
+
+#navbar-pc ul li a {
   color: #000;
 }
 
 #navbar-pc ul li:hover {
   background-color: rgba(0, 11, 112, 0.1);
   cursor: pointer;
-}
-
-#navbar-mb {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  /* style */
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin: 0 0 15px 0;
-  padding: 0 20px 0 5px;
-}
-
-#navbar-mb img {
-  height: 70px;
-  padding: 15px;
+  transition: 0.5s ease;
 }
 
 #sidebar {
-  background-color: white;
+  background: rgb(228, 228, 228);
+  background: linear-gradient(
+    270deg,
+    rgba(228, 228, 228, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  margin: 8px;
+  border-radius: 10px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -168,6 +171,22 @@ export default {
   cursor: pointer;
 }
 
+#close-btn:hover {
+  cursor: pointer;
+  color: blue;
+  transition: 0.5s ease;
+}
+
+#menu-btn {
+  cursor: pointer;
+}
+
+#menu-btn:hover {
+  cursor: pointer;
+  color: blue;
+  transition: 0.5s ease;
+}
+
 #sidebar ul {
   display: flex;
   flex-direction: column;
@@ -179,24 +198,24 @@ export default {
 }
 
 #sidebar ul li {
-  width: 320px;
-  max-width: 100%;
-}
-
-#sidebar ul li a {
-  width: 320px;
+  width: 300px;
   padding: 15px 0;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
+  border-radius: 10px;
+}
+
+#sidebar ul li a {
   color: #000;
 }
 
-#sidebar ul li a:hover {
+#sidebar ul li:hover {
   background-color: rgba(0, 11, 112, 0.1);
   cursor: pointer;
+  transition: 0.5s ease;
 }
 
 @media (min-width: 701px) {
@@ -255,10 +274,19 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  height: 70px;
+}
+
+#nflex a {
+  height: 70px;
 }
 
 #nflex-title {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+#label-menu {
+  height: 24px;
 }
 </style>
